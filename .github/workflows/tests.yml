@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     strategy:
-    fail-fast: false
-    matrix:
-      mysql_version: [5.7, 5.6, 5.8]
+      fail-fast: false
+      matrix:
+        mysql_version: [5.7, 5.6, 5.8]
 
     services:
       mysql:
