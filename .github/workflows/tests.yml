@@ -2,17 +2,21 @@ name: Run tests
 
 on:
   push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
+    branches:
+      - egc_test
 
 jobs:
   pytest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+
+    strategy:
+    fail-fast: false
+    matrix:
+      mysql_version: [5.7, 5.6, 5.8]
 
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:${{ matrix.mysql_version }}
         env:
           MYSQL_ROOT_PASSWORD: uvlhub_root_password
           MYSQL_DATABASE: uvlhubdb_test
